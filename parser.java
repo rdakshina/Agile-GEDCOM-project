@@ -1,4 +1,7 @@
 package agile;
+
+
+
 import java.io.*;
 import java.util.*;
 
@@ -18,7 +21,7 @@ public class parser {
     private String getId(String Id) {
         return Id.replace("@", "");
     }
-    //read and parse file
+
     public void readFile(String file) throws IOException {
 
         FileInputStream fileInput = null;
@@ -40,7 +43,6 @@ public class parser {
                 int level = Integer.valueOf(parseLine[0]);
                 String tag = parseLine[1];
                 String var = (parseLine.length > 2) ? getVar(parseLine) : null;
-                //check for level 0 tags
                 if (level == 0) {
                     if ("INDI".equals(var)) {
                         ind = new Individual();
@@ -60,7 +62,6 @@ public class parser {
                         flagIndi = false;
                     }
                 }
-                //check for level 1 tags
                 if (level == 1) {
                     if (flagIndi) {
                         if (tag.equals("NAME")) {
@@ -76,12 +77,21 @@ public class parser {
                        if (tag.equals("DEAT")) {
                            flagBirthDate = false;
                         }
+                       if (tag.equals("FAMS")) {
+                    	   ind.setSpouse(var);
+                       }
+                       if (tag.equals("FAMC")) {
+                    	   ind.setChild(var);
+                       }
                     } else {
                         if ("HUSB".equals(tag)) {
                             fam.setHusbandId(getId(var));
                         } else if ("WIFE".equals(tag)) {
                             fam.setWifeId(getId(var));
                         } 
+                        else if("CHIL".equals(tag)){
+                        	fam.setChildId(getId(var));
+                        }
                         
                         if ("MARR".equals(tag)) {
                             line = bufferRead.readLine();
@@ -93,7 +103,6 @@ public class parser {
                         } 
                     }
                 }
-                //check for level 2 tags
                 if (level == 2) {
                     if (flagIndi) {
                         if (tag.equals("SURN")) {
@@ -116,7 +125,7 @@ public class parser {
 
         setIndividualsInFamilies();
     }
-  //return individuals details
+
    public Individual getIndividual(String id) {
         if (individuals_list != null && !individuals_list.isEmpty()) {
             for (int i = 0; i < individuals_list.size(); i++) {
@@ -128,7 +137,7 @@ public class parser {
         }
         return null;
     }
-  //set family member's details
+
     private void setIndividualsInFamilies() {
         for (int i = 0; i < families_list.size(); i++) {
             Family fam = families_list.get(i);
@@ -138,7 +147,9 @@ public class parser {
             if (fam.getWifeId() != null) {
                 fam.setWife(getIndividual(fam.getWifeId()));
             }
+            
         }
     }
 
 }
+   
