@@ -15,7 +15,11 @@ public class Individual {
   private char sex;
   private String birthDate;
   private String deathDate;
+  private String child;
+  private String spouse;
+ // private String familyId = null;
 
+  
   public void setId (String id) {
       this.id = id;
   }
@@ -70,5 +74,18 @@ public class Individual {
 
   public String getDeathDate() {
       return this.deathDate;
+  }
+  public void setChild(String child) {
+      this.child = child;
+  }
+  public void setSpouse(String spouse) {
+      this.spouse = spouse;
+  }
+
+  public String getSpouse() {
+      return this.spouse;
+  }
+  public String getChild() {
+      return this.child;
   }
 }
