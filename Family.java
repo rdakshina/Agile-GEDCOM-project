@@ -11,7 +11,7 @@ public class Family {
     private String husbandId;
     private String wifeId;
     private String weddingDate;
-
+    private String childId="";//Id's of children are saved here
     public String getId() {
         return id;
     }
@@ -36,6 +36,17 @@ public class Family {
         this.wifeId = wifeId;
     }
 
+    public String getChildId() {
+    		return childId;
+    }
+    
+    public void setChildId(String childId) {
+   
+    		this.childId=this.childId  +" "+ childId;
+    	//	System.out.println(this.childId);
+    	
+    }
+    
     public String getWeddingDate() {
         return weddingDate;
     }
@@ -59,4 +70,5 @@ public class Family {
     public Individual getWife() {
         return this.wife;
     }
+    
 }
