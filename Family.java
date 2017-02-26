@@ -11,7 +11,26 @@ public class Family {
     private String husbandId;
     private String wifeId;
     private String weddingDate;
+    private String DivorceDate;
     private String childId="";//Id's of children are saved here
+    
+
+    public void setHusband(Individual husband) {
+        this.husband = husband;
+    }
+
+    public void setWife(Individual wife) {
+        this.wife = wife;
+    }
+
+    public Individual getHusband() {
+        return this.husband;
+    }
+
+    public Individual getWife() {
+        return this.wife;
+    }
+
     public String getId() {
         return id;
     }
@@ -42,7 +61,7 @@ public class Family {
     
     public void setChildId(String childId) {
    
-    		this.childId=this.childId  +" "+ childId;
+    	this.childId=this.childId  +" "+ childId;
     	//	System.out.println(this.childId);
     	
     }
@@ -55,20 +74,12 @@ public class Family {
         this.weddingDate = wdate;
     }
 
-    public void setHusband(Individual husband) {
-        this.husband = husband;
-    }
+	public String getDivorceDate() {
+		return DivorceDate;
+	}
 
-    public void setWife(Individual wife) {
-        this.wife = wife;
-    }
-
-    public Individual getHusband() {
-        return this.husband;
-    }
-
-    public Individual getWife() {
-        return this.wife;
-    }
-    
+	public void setDivorceDate(String divorceDate) {
+		this.DivorceDate = divorceDate;
+	}
+	
 }
