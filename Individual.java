@@ -2,12 +2,7 @@ package agile;
 
 
 
-import java.time.LocalDate;
-import java.time.Period;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
 
 //import java.util.*;
 
@@ -16,7 +11,7 @@ public class Individual {
 //class for individual
 
   // the info list for individual
-  private String id;
+  public  String id;
   private String name;
   private String givenName;
   private String surName;
@@ -79,7 +74,7 @@ public class Individual {
   }
 
   public void setDeathDate(String deathDate) {
-      this.deathDate = deathDate.trim();
+      this.deathDate = deathDate;
   }
 
   public String getDeathDate() {
@@ -111,6 +106,27 @@ public void setAliveStatus(Boolean aliveStatus) {
 	this.aliveStatus = aliveStatus;
 }
 
+/*public int calculateAge(String birthDate, String deathDate){
+	String a= birthDate.replace(' ', '-').toLowerCase();
+	
+	System.out.println(LocalDate.now());
+	System.out.println(a);
+	
+	a="5-Aug-2015";
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-yyyy");
+		LocalDate birDate = LocalDate.parse(a, formatter);
+		System.out.println(birDate);
+	LocalDate deaDate = LocalDate.parse(birthDate, formatter);
+	if ((birDate != null) && (deaDate == null)) {
+	    return Period.between(birDate, LocalDate.now()).getYears();
+	} else {
+		  return Period.between(birDate, deaDate).getYears();
+	}
+	 
+	
+	
+}*/
+
 public int getAge() {
 	return age;
 }
@@ -118,5 +134,7 @@ public int getAge() {
 public void setAge(int age) {
 	this.age = age;
 }
+
+
 
 }
