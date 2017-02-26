@@ -1,6 +1,14 @@
 package agile;
 
 
+
+import java.time.LocalDate;
+import java.time.Period;
+
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
 //import java.util.*;
 
 public class Individual {
@@ -16,6 +24,8 @@ public class Individual {
   private String birthDate;
   private String deathDate;
   private String child;
+  private Boolean aliveStatus;
+  private int age;
   private String spouse;
  // private String familyId = null;
 
@@ -69,7 +79,7 @@ public class Individual {
   }
 
   public void setDeathDate(String deathDate) {
-      this.deathDate = deathDate;
+      this.deathDate = deathDate.trim();
   }
 
   public String getDeathDate() {
@@ -88,4 +98,25 @@ public class Individual {
   public String getChild() {
       return this.child;
   }
+  
+  public String toString() {
+	  return getName();
+  }
+
+public Boolean getAliveStatus() {
+	return aliveStatus;
+}
+
+public void setAliveStatus(Boolean aliveStatus) {
+	this.aliveStatus = aliveStatus;
+}
+
+public int getAge() {
+	return age;
+}
+
+public void setAge(int age) {
+	this.age = age;
+}
+
 }

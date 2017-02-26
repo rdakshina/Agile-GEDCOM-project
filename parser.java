@@ -3,6 +3,11 @@ package agile;
 
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class parser {
@@ -95,12 +100,23 @@ public class parser {
                         
                         if ("MARR".equals(tag)) {
                             line = bufferRead.readLine();
+                            
                             String[] nextLine = (line.split("\\s+"));
                             if (nextLine[1].equals("DATE")) {
                                 String wedDate = nextLine[2] + " " + nextLine[3] + " " + nextLine[4];
                                 fam.setWeddingDate(wedDate);
                             }
+                            
                         } 
+                        if (tag.equals("DIV")) {
+                            line = bufferRead.readLine();
+                            String[] nextLine1 = (line.split("\\s+"));
+                            if (nextLine1[1].equals("DATE")) {
+                                String divDate = nextLine1[2] + " " + nextLine1[3] + " " + nextLine1[4];
+                                fam.setDivorceDate(divDate);
+                            }
+                        }
+                        
                     }
                 }
                 if (level == 2) {
@@ -112,8 +128,16 @@ public class parser {
                             ind.setGivenName(var);
                         }
                         if (tag.equals("DATE")) {
-                            if (flagBirthDate) ind.setBirthDate(var);
-                            else ind.setDeathDate(var);
+                            if (flagBirthDate) {
+                            	ind.setBirthDate(var);
+                            	ind.setAliveStatus(true);
+                            	ind.setAge(calculateAge(ind.getBirthDate(),LocalDate.now().toString()));
+                            }
+                            else{
+                            	ind.setDeathDate(var);
+                            	ind.setAliveStatus(false);
+                            	ind.setAge(calculateAge(ind.getBirthDate(),ind.getDeathDate()));
+                            }
                         }
                     }
                 }
@@ -124,6 +148,7 @@ public class parser {
         }
 
         setIndividualsInFamilies();
+       printAllDetails(individuals_list, families_list);
     }
 
    public Individual getIndividual(String id) {
@@ -137,19 +162,182 @@ public class parser {
         }
         return null;
     }
+  
 
     private void setIndividualsInFamilies() {
         for (int i = 0; i < families_list.size(); i++) {
             Family fam = families_list.get(i);
             if (fam.getHusbandId() != null) {
                 fam.setHusband(getIndividual(fam.getHusbandId()));
+               // System.out.println("Hus"+fam.getHusband().toString());
             }
             if (fam.getWifeId() != null) {
                 fam.setWife(getIndividual(fam.getWifeId()));
-            }
-            
+               // System.out.println("Wife"+fam.getWife());
+                
+            }        
         }
     }
+    
+  // Method to calculate age
+    public int calculateAge(String birthDate, String deathDate){
+ 	    LocalDate birDate = convertToLocalDate(birthDate);
+ 	    LocalDate deaDate;
+ 		if(deathDate.matches(".*[a-zA-Z]+.*")){
+ 		     deaDate = convertToLocalDate(deathDate);
+ 		     return Period.between(birDate, deaDate).getYears();
+ 		}else {
+ 			deaDate = LocalDate.parse(deathDate);
+ 			return Period.between(birDate, deaDate).getYears();
+ 		}	
+ 	}
+    
+  //Method to convert string to LocalDate format
+    public LocalDate convertToLocalDate(String date1){
+    	
+    	String s2 = date1.replace(" ", "-").toUpperCase();
+    	Date date =null;
+    	try {
+    		date = new SimpleDateFormat("dd-MMM-yyyy").parse(s2);
+    	} catch (ParseException e) {
+    		e.printStackTrace();
+    	}
+        String newFormat = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        LocalDate date2 = LocalDate.parse(newFormat);
+        return date2;
+    }
+    
+    //Method to validate dates before current date
+	 public String validateDateBeforeCurrent(String value1, String value2){
+	    	LocalDate today = LocalDate.now();
+	    	if(!"null".equals(value1) && value2==null){
+	    		LocalDate locDate1 = convertToLocalDate(value1);
+	            if(locDate1.isBefore(today)){
+	            	return "Yes";
+	            }else {
+	            	return "No";
+	            }
+	    	}else if(!"null".equals(value1) && !"null".equals(value2)) {
+	            LocalDate locDate1 = convertToLocalDate(value1);
+	            LocalDate locDate2 = convertToLocalDate(value2);
+	            if(locDate1.isBefore(today) && locDate2.isBefore(today)){
+	            	return "Yes";
+	            }else if(locDate1.isAfter(today) && locDate2.isBefore(today)){
+	            		return "Invalid Birthdate/Weddingdate";
+	            } else if(locDate1.isBefore(today) && locDate2.isAfter(today)){
+	            		return "Invalid Deathdate/Divorcedate";
+	            }else {
+	            	return "No";
+	           	}
+	    	}else if ((value1==null) && !"null".equals(value2)){
+	    		LocalDate locDate2 = convertToLocalDate(value2);
+	            if(locDate2.isBefore(today)){
+	            	return "Yes";
+	            }else {
+	            	return "No";
+	            }
+	    	}else if (value1==null && value2==null){
+	    		return "Null Dates";	
+	    	}else if (value1.isEmpty() && value2.isEmpty()){
+	    		return "Empty";
+	    	}else {
+	    		return "Invalid Dates";
+	    	} 	
+	    }
+    
+        
+     public void printAllDetails(List<Individual> individuals, List<Family> families) {
+    	 
+    	 System.out.println("Individuals");
+         System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+         System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n","ID","Name","Gender","Age","Birthday","Alive","Death","Child","Spouse","Valid Date");
+         System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+         for(Individual indv : individuals) {
+        	 System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n",indv.getId(),indv.getName(),indv.getSex(),indv.getAge(),indv.getBirthDate(),indv.getAliveStatus(),indv.getDeathDate(),indv.getChild(),indv.getSpouse(),validateDateBeforeCurrent(indv.getBirthDate(),indv.getDeathDate()));
+         }
+         System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+         System.out.println("Families");
+         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
+         System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|%-11s|\n","ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children","Valid Date");
+         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
+         for(Family fam : families) {
+        	 System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|%-11s|\n",fam.getId(),fam.getWeddingDate(),fam.getDivorceDate(),fam.getHusbandId(),fam.getHusband(),fam.getWifeId(),fam.getWife(),fam.getChildId(), validateDateBeforeCurrent(fam.getWeddingDate(),fam.getDivorceDate()));
+         }
+         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
+       
+     }
+    
 
 }
+/*public String validateDateBeforeCurrent(String value1, String value2){
+LocalDate today = LocalDate.now();
+Date date1 =null;
+Date date2 = null;
+if(value1 != null && value2 == null){
+	String str1 = value1.replace(" ", "-").toUpperCase();
+	try {
+		date1 = new SimpleDateFormat("dd-MMM-yyyy").parse(str1);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	String newFormat1 = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+    LocalDate locDate1 = LocalDate.parse(newFormat1);
+    if(locDate1.isBefore(today)){
+    	return "yes";
+    }
+    else {
+    	return "No";
+    }
+}else if(value1 != null && value2 != null)
+{
+	String str1 = value1.replace(" ", "-").toUpperCase();
+	String str2 = value2.replace(" ", "-").toUpperCase();
+	try {
+		date1 = new SimpleDateFormat("dd-MMM-yyyy").parse(str1);
+		date2 = new SimpleDateFormat("dd-MMM-yyyy").parse(str2);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	String newFormat1 = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+	String newFormat2 = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+    LocalDate locDate1 = LocalDate.parse(newFormat1);
+    LocalDate locDate2 = LocalDate.parse(newFormat2);
+    if(locDate1.isBefore(today) && locDate2.isBefore(today))
+    {
+    	return "yes";
+    }
+    else if(locDate1.isAfter(today) && locDate2.isBefore(today))
+    {
+    		return "Invalid Birthdate/Weddingdate";
+    }
+    else if(locDate1.isBefore(today) && locDate2.isAfter(today))
+    {
+
+    		return "Invalid Deathdate/Divorcedate";
+    }
+    else {
+    
+    	return "No";
+    }
+}else if (value1 == null && value2 != null){
+	String str2 = value2.replace(" ", "-").toUpperCase();
+	try {
+		date2 = new SimpleDateFormat("dd-MMM-yyyy").parse(str2);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	String newFormat2 = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+    LocalDate locDate2 = LocalDate.parse(newFormat2);
+    if(locDate2.isBefore(today)){
+    	return "Yes";
+    }
+    else {
+    	return "Yes";
+    }
+}else {
+	return "No Dates";
+}
+
+
+}*/
    

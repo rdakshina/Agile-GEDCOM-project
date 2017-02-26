@@ -18,8 +18,8 @@ public class reader {
 	 * @throws IOException
 	 */
 	
-	public  void parse() throws IOException {
-		String gedFile = "C:/Eclipse/PoojithaShivaPrasad.ged";
+	//public  void parse() throws IOException {
+	//	String gedFile = "C:/Users/Preity/Desktop/Prema Gopu.ged";
 		
 		
 		//String gedFileName = "C:/Eclipse/PoojithaShivaPrasad.ged";
@@ -28,8 +28,8 @@ public class reader {
 		//BufferedReader br = new BufferedReader(new FileReader(gedFile));
 	   // String line = "";
 	    
-	    parser p = new parser();
-	    p.readFile(gedFile);
+	  //  parser p = new parser();
+	  //  p.readFile(gedFile);
 	    
 	   /* while ((line = br.readLine()) != null) {
 	   // 	String[] array = line.split(" ");
@@ -51,7 +51,7 @@ public class reader {
 		    		}
 		    }
 	  */
-	}
+	//}
 	
 	
 	/**
@@ -59,9 +59,11 @@ public class reader {
 	 * call parse method
 	 */
     public static void main(String[] args) throws IOException {
-    	reader fileRead = new reader();
-    	fileRead.parse();
-    	System.out.println("finished");
+    	String gedFile = "C:/Users/Preity/Desktop/Prema Gopu.ged";
+    	 parser p = new parser();
+ 	    p.readFile(gedFile);
+    
+    	
     }
 	
 }
