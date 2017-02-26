@@ -20,42 +20,43 @@ public class reader {
 	 * @throws IOException
 	 */
 
-	public void parse() throws IOException {
-		String gedFile = "D:/Stevens/Sem 2/CS555/Prema Gopu.ged";
+	// public void parse() throws IOException {
+	// String gedFile = "C:/Users/Preity/Desktop/Prema Gopu.ged";
 
-		// String gedFileName = "C:/Eclipse/PoojithaShivaPrasad.ged";
-		// ClassLoader classLoader = getClass().getClassLoader();
-		// File gedFile = new
-		// File(classLoader.getResource(gedFileName).getFile());
-		// BufferedReader br = new BufferedReader(new FileReader(gedFile));
-		// String line = "";
+	// String gedFileName = "C:/Eclipse/PoojithaShivaPrasad.ged";
+	// ClassLoader classLoader = getClass().getClassLoader();
+	// File gedFile = new File(classLoader.getResource(gedFileName).getFile());
+	// BufferedReader br = new BufferedReader(new FileReader(gedFile));
+	// String line = "";
 
-		parser p = new parser();
-		p.readFile(gedFile);
-		p.genderRoleValidate();
+	// parser p = new parser();
+	// p.readFile(gedFile);
 
-		/*
-		 * while ((line = br.readLine()) != null) { // String[] array =
-		 * line.split(" "); // if(array.length > 1) { if("0".equals(array[0])) {
-		 * if(array[1].matches("[A-Za-z]+")) { System.out.print("Level : "
-		 * +array[0]+ " Tag : " + array[1]);
-		 * if(zeroTag.contains(array[1]))System.out.println(); else
-		 * System.out.println(" \nTag Invalid"); } else {
-		 * System.out.print("Level : " +array[0]+ " Tag : " + array[2]);
-		 * if(zeroTag.contains(array[2]))System.out.println(); else
-		 * System.out.println(" \nTag Invalid"); } } else {
-		 * System.out.print("Level:" + array[0]+ " Tag:" + array[1]);
-		 * if(genTag.contains(array[1]))System.out.println(); else
-		 * System.out.println(" \nTag Invalid"); } }
-		 */
-	}
+	/*
+	 * while ((line = br.readLine()) != null) { // String[] array =
+	 * line.split(" "); // if(array.length > 1) { if("0".equals(array[0])) {
+	 * if(array[1].matches("[A-Za-z]+")) { System.out.print("Level : "
+	 * +array[0]+ " Tag : " + array[1]);
+	 * if(zeroTag.contains(array[1]))System.out.println(); else
+	 * System.out.println(" \nTag Invalid"); } else {
+	 * System.out.print("Level : " +array[0]+ " Tag : " + array[2]);
+	 * if(zeroTag.contains(array[2]))System.out.println(); else
+	 * System.out.println(" \nTag Invalid"); } } else {
+	 * System.out.print("Level:" + array[0]+ " Tag:" + array[1]);
+	 * if(genTag.contains(array[1]))System.out.println(); else
+	 * System.out.println(" \nTag Invalid"); } }
+	 */
+	// }
 
 	/**
 	 * create object for the class call parse method
 	 */
 	public static void main(String[] args) throws IOException {
-		reader fileRead = new reader();
-		fileRead.parse();
+		String gedFile = "C:/Users/Preity/Desktop/Prema Gopu.ged";
+		parser p = new parser();
+		p.readFile(gedFile);
+		p.genderRoleValidate();
+
 	}
 
 }

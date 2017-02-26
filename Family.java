@@ -77,7 +77,7 @@ public class Family {
 	}
 
 	public void setDivorceDate(String divorceDate) {
-		DivorceDate = divorceDate;
+		this.DivorceDate = divorceDate;
 	}
 
 }
