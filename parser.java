@@ -526,7 +526,7 @@ public class parser {
 				        } 
 				        }else
 				        {
-				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        	System.out.printf("\n"+i.getId()+" Divorced but is not dead" );
 				        }
 					
 					}
@@ -558,7 +558,7 @@ public class parser {
 				       
 				        }else
 				        {
-				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        	System.out.printf("\n"+i.getId()+"Divorced but Is not dead" );
 				        }
 				        
 				     }
