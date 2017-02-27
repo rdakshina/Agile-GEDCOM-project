@@ -339,7 +339,7 @@ public class parser {
 
 		    }
 		
-		 
+		 //method to check birth before marraige
 		
 		 public void compareb() {
 				Individual i;
@@ -407,9 +407,163 @@ public class parser {
 
 					}
 				}
+		 //Method to check if Marriage date is before death date
+		 public void marriagebeforedeath() {
+				Individual i;
+				for (Individual induvidual : individuals_list) {
+
+					hm.put(induvidual.getId(), induvidual);
+					hm.put(induvidual.getDeathDate(), induvidual);
+				}
+
+				for (Family fam : families_list) {
+					String husband_id = fam.getHusbandId();
+					String wife_id = fam.getWifeId();
+					String weddingdate=fam.getWeddingDate();
+					i = (Individual) hm.get(husband_id);
+					if (i != null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date deathDate=null;
+				        Date marriageDate=null;
+				        
+				        try{
+				        if(i.getDeathDate()!=null)
+				        deathDate = format.parse(i.getDeathDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        marriageDate = format.parse(weddingdate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+				        if(deathDate!=null){
+				        if (marriageDate.compareTo(deathDate) == 1) {
+				            System.out.println("\nError: Marriage date should be before the Death date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf("\n Marriage date before Death date checked for " + i.getId());
+				            
+				        }
+					}
+					  else
+				        {
+				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        }
+					}
+					i = (Individual) hm.get(wife_id);
+					if (i != null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date deathDate=null;
+				        Date marriageDate=null;
+				        
+				        try{
+				        	if(i.getDeathDate()!=null)
+				        deathDate = format.parse(i.getDeathDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        marriageDate = format.parse(weddingdate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+				        if(i.getDeathDate()!=null){
+				        	
+				        
+				        if (marriageDate.compareTo(deathDate) == 1) {
+				            System.out.println("\nError: Marriage date should be before the Death date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf("\n Marriage date before Death date checked for " + i.getId());
+				            
+				        }}
+				        else
+				        {
+				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        }
+						}
+
+					}
+				}
 	
 			
-			
+		 public void divorcebeforedeath() {
+				Individual i;
+				for (Individual induvidual : individuals_list) {
+
+					hm.put(induvidual.getId(), induvidual);
+					hm.put(induvidual.getDeathDate(), induvidual);
+				}
+
+				for (Family fam : families_list) {
+					String husband_id = fam.getHusbandId();
+					String wife_id = fam.getWifeId();
+					String divorcedate=fam.getDivorceDate();
+					i = (Individual) hm.get(husband_id);
+					if (i != null && divorcedate!= null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date deathDate=null;
+				        Date divorceDate=null;
+				        
+				        try{
+				        	if(i.getDeathDate()!=null)
+				        deathDate = format.parse(i.getDeathDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        	divorceDate = format.parse(divorcedate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+				        if(i.getDeathDate()!=null){
+				        if (deathDate.compareTo(divorceDate) == 1) {
+				            System.out.println("\nError: Divorce date should be before the Death date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf("\n Divorce date before Death date checked for " + i.getId());
+				        } 
+				        }else
+				        {
+				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        }
+					
+					}
+					i = (Individual) hm.get(wife_id);
+					if (i != null && divorcedate!= null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date deathDate=null;
+				        Date divorceDate=null;
+				        
+				        try{
+				        	if(i.getDeathDate()!=null)
+				        deathDate = format.parse(i.getDeathDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        	divorceDate = format.parse(divorcedate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+				        if(i.getDeathDate()!=null){
+				        if (deathDate.compareTo(divorceDate) == 1) {
+				            System.out.println("\nError: Divorce date should be before the Death date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf("\n Divorce date before Death date checked for " + i.getId());
+				            
+				        }
+				       
+				        }else
+				        {
+				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        }
+				        
+				     }
+					}
+				}
 		 
 		
 		
