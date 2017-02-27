@@ -57,7 +57,8 @@ public class reader {
 		p.readFile(gedFile);
 		p.genderRoleValidate();
 		p.compareb();
-
+		p.marriagebeforedeath();
+		p.divorcebeforedeath();
 	}
 
 }
