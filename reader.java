@@ -15,7 +15,7 @@ public class reader {
 	// "HEAD","TRLR","NOTE");
 
 	/**
-	 * method to read ged file and print
+	 * method to read ged filfe and print
 	 * 
 	 * @throws IOException
 	 */
@@ -52,10 +52,11 @@ public class reader {
 	 * create object for the class call parse method
 	 */
 	public static void main(String[] args) throws IOException {
-		String gedFile = "C:/Users/Preity/Desktop/Prema Gopu.ged";
+		String gedFile = "C:/Eclipse/PoojithaShivaPrasad.ged";
 		parser p = new parser();
 		p.readFile(gedFile);
 		p.genderRoleValidate();
+		p.compareb();
 
 	}
 
