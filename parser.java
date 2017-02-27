@@ -3,10 +3,11 @@ package agile;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.time.*;
 
 public class parser {
 	// storing list of individuals and families
@@ -137,6 +138,7 @@ public class parser {
 								ind.setDeathDate(var);
 								ind.setAliveStatus(false);
 								ind.setAge(calculateAge(ind.getBirthDate(), ind.getDeathDate()));
+								compare(ind.getBirthDate(), ind.getDeathDate(),ind.getId());
 							}
 						}
 					}
@@ -165,9 +167,11 @@ public class parser {
 
 	private void setIndividualsInFamilies() {
 		for (int i = 0; i < families_list.size(); i++) {
+			
 			Family fam = families_list.get(i);
 			if (fam.getHusbandId() != null) {
 				fam.setHusband(getIndividual(fam.getHusbandId()));
+				
 				// System.out.println("Hus"+fam.getHusband().toString());
 			}
 			if (fam.getWifeId() != null) {
@@ -286,6 +290,7 @@ public class parser {
 			}
 			System.out.println("Gender Role Validation Completed");
 		}
+		
 		// Unique ID check
 		public void uniqueIdCheck(List<String> idList) {
 			Set<String> uniqueSet = new HashSet<String>();
@@ -304,9 +309,115 @@ public class parser {
 				System.out.println("DuplicateID" + dupesList);
 			}
 		}
+		
+		//method to check birth date before death date 
+		
+		 public static boolean compare(String birthDateString, String deathDateString, String ID){
+			 
+			    SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+		        Date birthDate=null;
+		        Date deathDate=null;
+		        
+		        try{
+		        birthDate = format.parse(birthDateString);
+		        } catch (ParseException e) {
+					e.printStackTrace();
+				}
+		        try{
+		        deathDate = format.parse(deathDateString);
+		        }catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+		        if (birthDate.compareTo(deathDate) == 1) {
+		            System.out.printf("Error: Birth date is after the death date for "+ ID);
+		            return false;
+		        } else {
+		        	System.out.printf(" Birthdate before Death date checked for " + ID);
+		            return true;
+		        }
+
+		    }
+		
+		 
+		
+		 public void compareb() {
+				Individual i;
+				for (Individual induvidual : individuals_list) {
+
+					hm.put(induvidual.getId(), induvidual);
+					hm.put(induvidual.getBirthDate(), induvidual);
+				}
+
+				for (Family fam : families_list) {
+					String husband_id = fam.getHusbandId();
+					String wife_id = fam.getWifeId();
+					String weddingdate=fam.getWeddingDate();
+					i = (Individual) hm.get(husband_id);
+					if (i != null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date birthDate=null;
+				        Date marriageDate=null;
+				        
+				        try{
+				        birthDate = format.parse(i.getBirthDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        marriageDate = format.parse(weddingdate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+
+				        if (birthDate.compareTo(marriageDate) == 1) {
+				            System.out.println("\nError: Birth date should be before the marriage date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf("\n Birthdate before marraige date checked for " + i.getId());
+				            
+				        }
+					}
+					i = (Individual) hm.get(wife_id);
+					if (i != null) {
+						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+				        Date birthDate=null;
+				        Date marriageDate=null;
+				        
+				        try{
+				        birthDate = format.parse(i.getBirthDate());
+				        } catch (ParseException e) {
+				        	e.printStackTrace();
+				        }
+				        try{
+				        marriageDate = format.parse(weddingdate);
+				        }catch (ParseException e){
+				        	e.printStackTrace();
+				        }
+
+				        if (birthDate.compareTo(marriageDate) == 1) {
+				            System.out.println("\nError: Birth date should be before the marriage date for "+ i.getId());
+				            
+				        } else {
+				        	System.out.printf(" \n Birthdate before marraige date checked for " + i.getId());
+				            
+				        }
+						
+						}
+
+					}
+				}
+	
+			
+			
+		 
+		
+		
+		
+		
 	public void printAllDetails(List<Individual> individuals, List<Family> families) {
 
-		System.out.println("Individuals");
+		System.out.println("\nIndividuals");
 		System.out.println(
 				"------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", "ID", "Name", "Gender",
