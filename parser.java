@@ -330,10 +330,10 @@ public class parser {
 				}
 
 		        if (birthDate.compareTo(deathDate) == 1) {
-		            System.out.printf("Error: Birth date is after the death date for "+ ID);
+		            System.out.printf(" *US03* Error: Birth date is after the death date for "+ ID);
 		            return false;
 		        } else {
-		        	System.out.printf(" Birthdate before Death date checked for " + ID);
+		        	System.out.printf(" *US03* Birthdate before Death date checked for " + ID);
 		            return true;
 		        }
 
@@ -371,10 +371,10 @@ public class parser {
 				        }
 
 				        if (birthDate.compareTo(marriageDate) == 1) {
-				            System.out.println("\nError: Birth date should be before the marriage date for "+ i.getId());
+				            System.out.println(" *US02* \nError: Birth date should be before the marriage date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf("\n Birthdate before marraige date checked for " + i.getId());
+				        	System.out.printf("\n *US02* Birthdate before marraige date checked for " + i.getId());
 				            
 				        }
 					}
@@ -396,10 +396,10 @@ public class parser {
 				        }
 
 				        if (birthDate.compareTo(marriageDate) == 1) {
-				            System.out.println("\nError: Birth date should be before the marriage date for "+ i.getId());
+				            System.out.println("\n *US02* Error: Birth date should be before the marriage date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf(" \n Birthdate before marraige date checked for " + i.getId());
+				        	System.out.printf(" \n *US02* Birthdate before marraige date checked for " + i.getId());
 				            
 				        }
 						
@@ -439,16 +439,16 @@ public class parser {
 				        }
 				        if(deathDate!=null){
 				        if (marriageDate.compareTo(deathDate) == 1) {
-				            System.out.println("\nError: Marriage date should be before the Death date for "+ i.getId());
+				            System.out.println("\n *US05* Error: Marriage date should be before the Death date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf("\n Marriage date before Death date checked for " + i.getId());
+				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				            
 				        }
 					}
 					  else
 				        {
-				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				        }
 					}
 					i = (Individual) hm.get(wife_id);
@@ -472,15 +472,15 @@ public class parser {
 				        	
 				        
 				        if (marriageDate.compareTo(deathDate) == 1) {
-				            System.out.println("\nError: Marriage date should be before the Death date for "+ i.getId());
+				            System.out.println("\n *US05* Error: Marriage date should be before the Death date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf("\n Marriage date before Death date checked for " + i.getId());
+				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				            
 				        }}
 				        else
 				        {
-				        	System.out.printf("\n"+i.getId()+"Is not dead" );
+				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				        }
 						}
 
@@ -519,14 +519,14 @@ public class parser {
 				        }
 				        if(i.getDeathDate()!=null){
 				        if (deathDate.compareTo(divorceDate) == 1) {
-				            System.out.println("\nError: Divorce date should be before the Death date for "+ i.getId());
+				            System.out.println("\n *US06* Error: Divorce date should be before the Death date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf("\n Divorce date before Death date checked for " + i.getId());
+				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
 				        } 
 				        }else
 				        {
-				        	System.out.printf("\n"+i.getId()+" Divorced but is not dead" );
+				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
 				        }
 					
 					}
@@ -549,16 +549,16 @@ public class parser {
 				        }
 				        if(i.getDeathDate()!=null){
 				        if (deathDate.compareTo(divorceDate) == 1) {
-				            System.out.println("\nError: Divorce date should be before the Death date for "+ i.getId());
+				            System.out.println("\n *US06* Error: Divorce date should be before the Death date for "+ i.getId());
 				            
 				        } else {
-				        	System.out.printf("\n Divorce date before Death date checked for " + i.getId());
+				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
 				            
 				        }
 				       
 				        }else
 				        {
-				        	System.out.printf("\n"+i.getId()+"Divorced but Is not dead" );
+				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId() );
 				        }
 				        
 				     }
