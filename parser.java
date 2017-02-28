@@ -210,42 +210,98 @@ public class parser {
 		return date2;
 	}
 
-	// Method to validate dates before current date
-	public String validateDateBeforeCurrent(String value1, String value2) {
+	// Method to validate dates before current date for Individual
+	public void validateDatesBeforeCurrentIndv() {
+		for (Individual indc : individuals_list) {
+
+			String value1= indc.getBirthDate();
+			String value2 = indc.getDeathDate();
+			String Id = indc.getId();
+		
 		LocalDate today = LocalDate.now();
 		if (!"null".equals(value1) && value2 == null) {
 			LocalDate locDate1 = convertToLocalDate(value1);
 			if (locDate1.isBefore(today)) {
-				return "Yes";
+				//System.out.println("Yes");
 			} else {
-				return "No";
+				System.out.println("ERROR: INDIVIDUAL: US01: Birthday "+value1+" for the individual "+Id+" occurs in the future.");
 			}
 		} else if (!"null".equals(value1) && !"null".equals(value2)) {
 			LocalDate locDate1 = convertToLocalDate(value1);
 			LocalDate locDate2 = convertToLocalDate(value2);
 			if (locDate1.isBefore(today) && locDate2.isBefore(today)) {
-				return "Yes";
+				//System.out.println("Yes");
 			} else if (locDate1.isAfter(today) && locDate2.isBefore(today)) {
-				return "Invalid Birthdate/Weddingdate";
+				System.out.println("ERROR: INDIVIDUAL: US01: Birthday "+value1+" for the individual "+Id+" occurs in the future.");
 			} else if (locDate1.isBefore(today) && locDate2.isAfter(today)) {
-				return "Invalid Deathdate/Divorcedate";
+				System.out.println("ERROR: INDIVIDUAL: US01: Death Date "+value2+" for the individual "+Id+" occurs in the future.");
 			} else {
-				return "No";
+				System.out.println("ERROR: INDIVIDUAL: US01: Invalid date format for the individual "+Id);
 			}
 		} else if ((value1 == null) && !"null".equals(value2)) {
 			LocalDate locDate2 = convertToLocalDate(value2);
 			if (locDate2.isBefore(today)) {
-				return "Yes";
+				//return "Yes";
 			} else {
-				return "No";
+				System.out.println("ERROR: INDIVIDUAL: US01: Death Date "+value2+" for the individual "+Id+" occurs in the future.");
 			}
 		} else if (value1 == null && value2 == null) {
-			return "Null Dates";
+			System.out.println("ERROR: INDIVIDUAL: US01: Dates are null for the individual "+Id);
 		} else if (value1.isEmpty() && value2.isEmpty()) {
-			return "Empty";
+			System.out.println("ERROR: INDIVIDUAL: US01: Dates are empty for the individual "+Id);
 		} else {
-			return "Invalid Dates";
+			System.out.println("ERROR: INDIVIDUAL: US01: Invalid date format for the individual "+Id);
+			
 		}
+		}
+		System.out.println("INDIVIDUAL: US01: Validated all dates before current date");
+	}
+	
+	// Method to validate dates before current date for Family
+	public void validateDatesBeforeCurrentFam() {
+		for (Family famc : families_list) {
+			String value1= famc.getWeddingDate();
+			String value2 = famc.getDivorceDate();
+			String fId = famc.getId();
+			String hId = famc.getHusbandId();
+			String wId = famc.getWifeId();
+		
+		LocalDate today = LocalDate.now();
+		if (!"null".equals(value1) && value2 == null) {
+			LocalDate locDate1 = convertToLocalDate(value1);
+			if (locDate1.isBefore(today)) {
+				//System.out.println("Yes");
+			} else {
+				System.out.println("ERROR: FAMILY: US01: Wedding Date "+value1+" for the family "+fId+" [Husband: "+hId+" Wife: "+wId+"] occurs in the future.");
+			}
+		} else if (!"null".equals(value1) && !"null".equals(value2)) {
+			LocalDate locDate1 = convertToLocalDate(value1);
+			LocalDate locDate2 = convertToLocalDate(value2);
+			if (locDate1.isBefore(today) && locDate2.isBefore(today)) {
+				//System.out.println("Yes");
+			} else if (locDate1.isAfter(today) && locDate2.isBefore(today)) {
+				System.out.println("ERROR: FAMILY: US01: Wedding Date "+value1+" for the family "+fId+" [Husband: "+hId+" Wife: "+wId+"] occurs in the future.");
+			} else if (locDate1.isBefore(today) && locDate2.isAfter(today)) {
+				System.out.println("ERROR: FAMILY: US01: Divorce Date "+value2+" for the family "+fId+" [Husband: "+hId+" Wife: "+wId+"] occurs in the future.");
+			} else {
+				System.out.println("ERROR: FAMILY: US01: Invalid date format for the family "+fId);
+			}
+		} else if ((value1 == null) && !"null".equals(value2)) {
+			LocalDate locDate2 = convertToLocalDate(value2);
+			if (locDate2.isBefore(today)) {
+				//return "Yes";
+			} else {
+				System.out.println("ERROR: FAMILY: US01: Divorce Date "+value2+" for the family "+fId+" [Husband: "+hId+" Wife: "+wId+"] occurs in the future");
+			}
+		} else if (value1 == null && value2 == null) {
+			System.out.println("ERROR: FAMILY: US01: Dates are null for the family "+fId);
+		} else if (value1.isEmpty() && value2.isEmpty()) {
+			System.out.println("ERROR: FAMILY: US01: Dates are empty for the family "+fId);
+		} else {
+			System.out.println("ERROR: FAMILY: US01: Invalid date format for the family "+fId);			
+		}
+		}
+		System.out.println("FAMILY: US01: Validated all dates before current date");
 	}
 	// Gender Role Validation
 		public void genderRoleValidate() {
@@ -569,44 +625,43 @@ public class parser {
 		
 		
 		
-	public void printAllDetails(List<Individual> individuals, List<Family> families) {
+		public void printAllDetails(List<Individual> individuals, List<Family> families) {
 
-		System.out.println("\nIndividuals");
+		System.out.println("Individuals");
 		System.out.println(
-				"------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", "ID", "Name", "Gender",
-				"Age", "Birthday", "Alive", "Death", "Child", "Spouse", "Valid Date");
+				"------------------------------------------------------------------------------------------------------------------------");
+		System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", "ID", "Name", "Gender",
+				"Age", "Birthday", "Alive", "Death", "Child", "Spouse");
 		System.out.println(
-				"------------------------------------------------------------------------------------------------------------------------------------");
+				"------------------------------------------------------------------------------------------------------------------------");
 		for (Individual indv : individuals) {
 			individual_id.add(indv.getId());
-			System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", indv.getId(),
+			System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", indv.getId(),
 					indv.getName(), indv.getSex(), indv.getAge(), indv.getBirthDate(), indv.getAliveStatus(),
-					indv.getDeathDate(), indv.getChild(), indv.getSpouse(),
-					validateDateBeforeCurrent(indv.getBirthDate(), indv.getDeathDate()));
+					indv.getDeathDate(), indv.getChild(), indv.getSpouse());
+			
 		}
 		System.out.println(
-				"------------------------------------------------------------------------------------------------------------------------------------");
+				"------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("INDIVIDUAL: US27: Displayed Individuals Age");
 		uniqueIdCheck(individual_id);
 		System.out.println("Families");
 		System.out.println(
-				"-----------------------------------------------------------------------------------------------------------------------------------");
-		System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|%-11s|\n", "ID", "Married", "Divorced",
-				"Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children", "Valid Date");
+				"-----------------------------------------------------------------------------------------------------------------------");
+		System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|\n", "ID", "Married", "Divorced",
+				"Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children");
 		System.out.println(
-				"-----------------------------------------------------------------------------------------------------------------------------------");
+				"-----------------------------------------------------------------------------------------------------------------------");
 		for (Family fam : families) {
 			family_id.add(fam.getId());
-			System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|%-11s|\n", fam.getId(),
+			System.out.printf("|%-11s|%-11s|%-11s|%-11s|%-22s|%-11s|%-22s|%-11s|\n", fam.getId(),
 					fam.getWeddingDate(), fam.getDivorceDate(), fam.getHusbandId(), fam.getHusband(), fam.getWifeId(),
-					fam.getWife(), fam.getChildId(),
-					validateDateBeforeCurrent(fam.getWeddingDate(), fam.getDivorceDate()));
+					fam.getWife(), fam.getChildId());
 		}
 		System.out.println(
-				"-----------------------------------------------------------------------------------------------------------------------------------");
+				"-----------------------------------------------------------------------------------------------------------------------");
 		uniqueIdCheck(family_id);
 	}
-
 }
 /*
  * public String validateDateBeforeCurrent(String value1, String value2){
