@@ -324,7 +324,7 @@ public class parser {
 					} else {
 						//status = false;
 
-						System.out.println("HusbId:" + husband_id + "   Sex:" + i.getSex() + "   InValid");
+					System.out.println("ERROR: US21: HusbId:" + husband_id + "   Sex:" + i.getSex() + "   InValid");
 
 					}
 				}
@@ -336,7 +336,7 @@ public class parser {
 
 					} else {
 
-						System.out.println("WifeId:" + wife_id + "   Sex:" + i.getSex() + "   InValid");
+					System.out.println("ERROR: US21: WifeId:" + wife_id + "   Sex:" + i.getSex() + "   InValid");
 
 						//status = false;
 
@@ -344,7 +344,6 @@ public class parser {
 
 				}
 			}
-			System.out.println("Gender Role Validation Completed");
 		}
 		
 		// Unique ID check
@@ -360,9 +359,9 @@ public class parser {
 
 			}
 			if (dupesList.isEmpty()) {
-				System.out.println("UniqueID Check Completed");
+			System.out.println("US22: UniqueID Check Completed");
 			} else {
-				System.out.println("DuplicateID" + dupesList);
+			System.out.println("ERROR: US22: DuplicateID" + dupesList);
 			}
 		}
 		
