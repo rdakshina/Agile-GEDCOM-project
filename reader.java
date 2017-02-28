@@ -55,6 +55,8 @@ public class reader {
 		String gedFile = "C:/Eclipse/PoojithaShivaPrasad.ged";
 		parser p = new parser();
 		p.readFile(gedFile);
+		p.validateDatesBeforeCurrentIndv();
+		p.validateDatesBeforeCurrentFam();
 		p.genderRoleValidate();
 		p.compareb();
 		p.marriagebeforedeath();
