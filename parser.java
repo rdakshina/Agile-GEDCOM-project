@@ -385,16 +385,17 @@ public class parser {
 				}
 
 		        if (birthDate.compareTo(deathDate) == 1) {
-		            System.out.printf(" \n*US03* Error: Birth date is after the death date for "+ ID);
+		            System.out.printf(" \nERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL "+ ID +" Birth date="+birthDateString+" Death date="+deathDateString);
+		          
 		            return false;
 		        } else {
-		        	System.out.printf(" \n*US03* Birthdate before Death date checked for " + ID);
-		            return true;
+		        	//System.out.printf(" \n*US03* Birthdate before Death date checked for " + ID);
+		        	return true;
 		        }
-
+		        
 		    }
 		
-		 //method to check birth before marraige
+		 //method to check birth before marriage
 		
 		 public void compareb() {
 				Individual i;
@@ -413,7 +414,7 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date birthDate=null;
 				        Date marriageDate=null;
-				        
+				        String bdate=i.getBirthDate();
 				        try{
 				        birthDate = format.parse(i.getBirthDate());
 				        } catch (ParseException e) {
@@ -426,10 +427,10 @@ public class parser {
 				        }
 
 				        if (birthDate.compareTo(marriageDate) == 1) {
-				            System.out.println(" *US02* \nError: Birth date should be before the marriage date for "+ i.getId());
-				            
+				            System.out.println("\nERROR: INDIVIDUAL: US02: Birth date is after the marraige date for INDIVIDUAL "+ i.getId() +" Birth date="+bdate+" Marriage date= "+weddingdate);
+				           
 				        } else {
-				        	System.out.printf("\n *US02* Birthdate before marraige date checked for " + i.getId());
+				        	//System.out.printf("\n *US02* Birthdate before marraige date checked for " + i.getId());
 				            
 				        }
 					}
@@ -438,7 +439,7 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date birthDate=null;
 				        Date marriageDate=null;
-				        
+				        String bdate=i.getBirthDate();
 				        try{
 				        birthDate = format.parse(i.getBirthDate());
 				        } catch (ParseException e) {
@@ -451,16 +452,17 @@ public class parser {
 				        }
 
 				        if (birthDate.compareTo(marriageDate) == 1) {
-				            System.out.println("\n *US02* Error: Birth date should be before the marriage date for "+ i.getId());
-				            
+				            System.out.println("ERROR: INDIVIDUAL: US02: Birth date is after the marraige date for INDIVIDUAL "+ i.getId() +" Birth date="+bdate+" Marriage date= "+weddingdate);
+					           
 				        } else {
-				        	System.out.printf(" \n *US02* Birthdate before marraige date checked for " + i.getId());
+				        	//System.out.printf(" \n *US02* Birthdate before marraige date checked for " + i.getId());
 				            
 				        }
 						
 						}
 
 					}
+				System.out.printf("INDIVIDUAL: US02: Birth date before Marriage date check completed \n");
 				}
 		 //Method to check if Marriage date is before death date
 		 public void marriagebeforedeath() {
@@ -480,7 +482,7 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date deathDate=null;
 				        Date marriageDate=null;
-				        
+				        String DDate=i.getDeathDate();
 				        try{
 				        if(i.getDeathDate()!=null)
 				        deathDate = format.parse(i.getDeathDate());
@@ -494,16 +496,16 @@ public class parser {
 				        }
 				        if(deathDate!=null){
 				        if (marriageDate.compareTo(deathDate) == 1) {
-				            System.out.println("\n *US05* Error: Marriage date should be before the Death date for "+ i.getId());
+				        	System.out.println("ERROR: INDIVIDUAL:US05: Marriage date should be before the Death date for INDIVIDUAL "+i.getId()+" Marriage date="+weddingdate+" Death date="+DDate);
 				            
 				        } else {
-				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				            
 				        }
 					}
 					  else
 				        {
-				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				        }
 					}
 					i = (Individual) hm.get(wife_id);
@@ -511,10 +513,11 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date deathDate=null;
 				        Date marriageDate=null;
-				        
+				        String DDate=i.getDeathDate();
 				        try{
 				        	if(i.getDeathDate()!=null)
 				        deathDate = format.parse(i.getDeathDate());
+				       
 				        } catch (ParseException e) {
 				        	e.printStackTrace();
 				        }
@@ -527,19 +530,20 @@ public class parser {
 				        	
 				        
 				        if (marriageDate.compareTo(deathDate) == 1) {
-				            System.out.println("\n *US05* Error: Marriage date should be before the Death date for "+ i.getId());
+				            System.out.println("ERROR :INDIVIDUAL: US05: Marriage date should be before the Death date for INDIVIDUAL " +i.getId() +" Marriage date="+weddingdate+" Death date="+DDate);
 				            
 				        } else {
-				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				            
 				        }}
 				        else
 				        {
-				        	System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US05* Marriage date before Death date checked for " + i.getId());
 				        }
 						}
 
 					}
+				System.out.printf("INDIVIDUAL: US05: Marriage date before Death date check completed \n");
 				}
 	
 			
@@ -560,7 +564,7 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date deathDate=null;
 				        Date divorceDate=null;
-				        
+				        String Ddate=i.getDeathDate();
 				        try{
 				        	if(i.getDeathDate()!=null)
 				        deathDate = format.parse(i.getDeathDate());
@@ -573,15 +577,15 @@ public class parser {
 				        	e.printStackTrace();
 				        }
 				        if(i.getDeathDate()!=null){
-				        if (deathDate.compareTo(divorceDate) == 1) {
-				            System.out.println("\n *US06* Error: Divorce date should be before the Death date for "+ i.getId());
-				            
+				        if (divorceDate.compareTo(deathDate) == 1) {
+				            System.out.println("ERROR: INDIVIDUAL: US06: Divorce date is after the Death date for INDIVIDUAL "+ i.getId() +" Divorce date="+divorcedate+" Death date="+Ddate);
+				           
 				        } else {
-				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
 				        } 
 				        }else
 				        {
-				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
+				        	System.out.printf("*US06* Divorce date before Death date checked for " + i.getId());
 				        }
 					
 					}
@@ -590,7 +594,7 @@ public class parser {
 						SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 				        Date deathDate=null;
 				        Date divorceDate=null;
-				        
+				        String Ddate=i.getDeathDate();
 				        try{
 				        	if(i.getDeathDate()!=null)
 				        deathDate = format.parse(i.getDeathDate());
@@ -604,20 +608,21 @@ public class parser {
 				        }
 				        if(i.getDeathDate()!=null){
 				        if (deathDate.compareTo(divorceDate) == 1) {
-				            System.out.println("\n *US06* Error: Divorce date should be before the Death date for "+ i.getId());
-				            
+				            System.out.println("ERROR: INDIVIDUAL: US06: Divorce date is after the Death date for INDIVIDUAL "+ i.getId() +"Divorce date="+divorcedate+" Death date="+Ddate);
+					           
 				        } else {
-				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
+				        	//System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId());
 				            
 				        }
 				       
 				        }else
 				        {
-				        	System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId() );
+				        	//System.out.printf("\n *US06* Divorce date before Death date checked for " + i.getId() );
 				        }
 				        
 				     }
 					}
+				System.out.printf("INDIVIDUAL: US06: Divorce date before Death date check completed \n");
 				}
 		 
 		
@@ -626,7 +631,7 @@ public class parser {
 		
 		public void printAllDetails(List<Individual> individuals, List<Family> families) {
 
-		System.out.println("Individuals");
+		System.out.println("\nIndividuals");
 		System.out.println(
 				"------------------------------------------------------------------------------------------------------------------------");
 		System.out.printf("|%-11s|%-22s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|%-11s|\n", "ID", "Name", "Gender",
