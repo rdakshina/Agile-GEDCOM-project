@@ -330,10 +330,10 @@ public class parser {
 				}
 
 		        if (birthDate.compareTo(deathDate) == 1) {
-		            System.out.printf(" *US03* Error: Birth date is after the death date for "+ ID);
+		            System.out.printf(" \n*US03* Error: Birth date is after the death date for "+ ID);
 		            return false;
 		        } else {
-		        	System.out.printf(" *US03* Birthdate before Death date checked for " + ID);
+		        	System.out.printf(" \n*US03* Birthdate before Death date checked for " + ID);
 		            return true;
 		        }
 
