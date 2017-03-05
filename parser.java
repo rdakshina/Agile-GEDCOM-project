@@ -303,6 +303,7 @@ public class parser {
 		}
 		System.out.println("FAMILY: US01: Validated all dates before current date");
 	}
+	
 	// Validate marriage after 14
 	public HashMap<String, Object> mar = new HashMap<String, Object>();
 			public void validateMarriage(){
@@ -335,6 +336,34 @@ public class parser {
 					
 					}
 				}
+	
+	// Unique name and birth date validation	
+			public void validateUniqueNameBirthDate(){
+				List<String> allList = new ArrayList<String>();
+				for(Individual indd : individuals_list){
+					//String id = indd.getId();
+					String iname = indd.getName().replace("/", "").trim();
+					LocalDate dob = convertToLocalDate(indd.getBirthDate());
+					String namedob = iname+" "+dob.toString().trim();
+					allList.add(namedob);
+				}
+					Set<String> uniqueSet = new HashSet<String>();
+					List<String> dupesList = new ArrayList<String>();
+					for (String s : allList) {
+						if (uniqueSet.contains(s)) {
+							dupesList.add(s);
+						} else {
+							uniqueSet.add(s);
+						}
+					}
+					if (dupesList.isEmpty()) {
+					
+					} else {
+					System.out.println("ERROR: INDIVIDUAL: US23: Duplicate name and birthdate found " + dupesList);
+					}
+				System.out.println("INDIVIDUAL: US23: Validated all unique name and birthdate");
+			}
+	
 	// Gender Role Validation
 		public void genderRoleValidate() {
 			Individual i;
