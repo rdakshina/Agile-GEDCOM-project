@@ -3,7 +3,7 @@ package agile;
 //import java.io.BufferedReader;
 
 //import java.io.FileReader;
-import java.io.IOException;
+//import java.io.IOException;
 //import java.util.Arrays;
 //import java.util.List;
 
@@ -58,6 +58,7 @@ public class reader {
 		p.validateDatesBeforeCurrentIndv();
 		p.validateDatesBeforeCurrentFam();
 		p.validateMarriage();
+		p.validateUniqueNameBirthDate();
 		p.genderRoleValidate();
 		p.compareb();
 		p.marriagebeforedeath();
