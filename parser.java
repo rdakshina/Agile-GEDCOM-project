@@ -303,6 +303,38 @@ public class parser {
 		}
 		System.out.println("FAMILY: US01: Validated all dates before current date");
 	}
+	// Validate marriage after 14
+	public HashMap<String, Object> mar = new HashMap<String, Object>();
+			public void validateMarriage(){
+				
+				for (Individual indl : individuals_list) {
+
+					mar.put(indl.getId(), indl);
+				}
+
+				for (Family fam : families_list) {
+					if(fam.getWeddingDate()!=null){
+					String fid = fam.getId();
+					String husband_id = fam.getHusbandId();
+					String wife_id = fam.getWifeId();
+					Individual i = (Individual) mar.get(husband_id);
+					Individual w = (Individual) mar.get(wife_id);
+					if (i.getAge() >= 14 && w.getAge() >= 14) {
+						//System.out.println();
+					}
+					else if(i.getAge()<14){
+						System.out.println("ERROR: FAMILY: US10: Marriage before 14 - Family: "+fid+" Husband: "+husband_id+" age is less than 14");
+					}
+					else if(w.getAge()<14){
+						System.out.println("ERROR: FAMILY: US10: Marriage before 14 - Family: "+fid+" Wife: "+wife_id+" age is less than 14");
+					}
+					else{
+						System.out.println("ERROR: FAMILY: US10: Marriage before 14 - Family: "+fid+" Husband ID: "+husband_id+" Wife ID: "+wife_id);
+					}
+					}
+					
+					}
+				}
 	// Gender Role Validation
 		public void genderRoleValidate() {
 			Individual i;
