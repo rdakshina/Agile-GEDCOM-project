@@ -57,6 +57,7 @@ public class reader {
 		p.readFile(gedFile);
 		p.validateDatesBeforeCurrentIndv();
 		p.validateDatesBeforeCurrentFam();
+		p.validateMarriage();
 		p.genderRoleValidate();
 		p.compareb();
 		p.marriagebeforedeath();
