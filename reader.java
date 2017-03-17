@@ -3,9 +3,11 @@ package agile;
 //import java.io.BufferedReader;
 
 //import java.io.FileReader;
-//import java.io.IOException;
+import java.io.IOException;
 //import java.util.Arrays;
 //import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class reader {
 
@@ -52,17 +54,21 @@ public class reader {
 	 * create object for the class call parse method
 	 */
 	public static void main(String[] args) throws IOException {
-		String gedFile = "C:/Eclipse/PoojithaShivaPrasad.ged";
-		parser p = new parser();
+		List<Individual> individuals_list = new ArrayList<Individual>();
+		List<Family> families_list = new ArrayList<Family>();
+		String gedFile = "C:/studies/2agile/PoojithaShivaPrasad.ged.ged";
+		parser p = new parser(); 
 		p.readFile(gedFile);
 		p.validateDatesBeforeCurrentIndv();
 		p.validateDatesBeforeCurrentFam();
-		p.validateMarriage();
-		p.validateUniqueNameBirthDate();
 		p.genderRoleValidate();
 		p.compareb();
-		p.marriagebeforedeath();
-		p.divorcebeforedeath();
+		families_list=p.marriagebeforedeath();
+		individuals_list=p.divorcebeforedeath();
+		AgeLessThan150 obj1= new AgeLessThan150();
+		obj1.ageCheck(individuals_list);
+		BirthBeforeMarriageOfParents obj2=new BirthBeforeMarriageOfParents();
+		obj2.checkChildBirth(individuals_list, families_list);
 	}
 
 }
