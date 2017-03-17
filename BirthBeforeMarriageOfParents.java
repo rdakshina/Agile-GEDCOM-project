@@ -64,8 +64,7 @@ public class BirthBeforeMarriageOfParents {
 		
 		
 	}
-		System.out.printf("US08: Birth before marriage of parents check completed");
-
+		System.out.printf("FAMILY :US08: Birth before marriage of parents check completed");
 	}
 	
 }
