@@ -526,7 +526,7 @@ public class parser {
 				System.out.printf("INDIVIDUAL: US02: Birth date before Marriage date check completed \n");
 				}
 		 //Method to check if Marriage date is before death date
-		 public void marriagebeforedeath() {
+		 public List<Family> marriagebeforedeath() {
 				Individual i;
 				for (Individual induvidual : individuals_list) {
 
@@ -605,10 +605,11 @@ public class parser {
 
 					}
 				System.out.printf("INDIVIDUAL: US05: Marriage date before Death date check completed \n");
+				return families_list;
 				}
 	
 			
-		 public void divorcebeforedeath() {
+		 public List<Individual> divorcebeforedeath() {
 				Individual i;
 				for (Individual induvidual : individuals_list) {
 
@@ -684,6 +685,7 @@ public class parser {
 				     }
 					}
 				System.out.printf("INDIVIDUAL: US06: Divorce date before Death date check completed \n");
+				return individuals_list;
 				}
 		 
 		
