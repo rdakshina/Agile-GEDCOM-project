@@ -69,6 +69,8 @@ public class reader {
 		obj1.ageCheck(individuals_list);
 		BirthBeforeMarriageOfParents obj2=new BirthBeforeMarriageOfParents();
 		obj2.checkChildBirth(individuals_list, families_list);
+		MarriageBeforeDivorce obj3=new MarriageBeforeDivorce();
+		obj3.compare3(families_list);
 	}
 
 }
