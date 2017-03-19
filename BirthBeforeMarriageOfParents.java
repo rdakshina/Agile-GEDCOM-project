@@ -1,14 +1,16 @@
 package agile;
 
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class BirthBeforeMarriageOfParents {
 	
 	public HashMap<String, Object> hm = new HashMap<String, Object>();
+	public parser var= new parser();
 	
 	void checkChildBirth(List<Individual> individuals_list,List<Family> families_list){
 		for (Individual induvidual : individuals_list) {
@@ -23,48 +25,63 @@ public class BirthBeforeMarriageOfParents {
 			//split child id's at spaces
 			
 			String WeddingDate=fam.getWeddingDate();
+			String DivorceDate=fam.getDivorceDate();
 			
 			for(String temp: children){
 				Individual c=(Individual) hm.get(temp);
 		
 				if (c!= null) {
 					SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
-			        Date birthdate=null;
-			        Date marriageDate=null;
-			        String Bdate=c.getBirthDate();
-			        try{
-			        if(Bdate!=null)
-			        birthdate = format.parse(Bdate);
-			        } catch (ParseException e) {
-			        	e.printStackTrace();
+			        
+			        LocalDate locBDate=null;
+			        LocalDate locWDate=null;
+			        LocalDate locDDate=null;
+			        String Bdate=null;
+			        
+			        Bdate=c.getBirthDate();
+			        if(!"null".equals(Bdate))
+				        {
+				        	
+				        	locBDate = var.convertToLocalDate(Bdate);
+				        }
+			        
+			       
+			        locWDate = var.convertToLocalDate(WeddingDate);
+			        if(DivorceDate!=null)
+			        	 {
+				        
+			        	 locDDate = var.convertToLocalDate(DivorceDate);
+			        	 locDDate.plusMonths(9);
+			        	 }
+				       
+			        
+			        
+			        if(locBDate!=null && locWDate!=null ){
+			        	if (locBDate.isBefore(locWDate))
+			        	{
+			        	System.out.println("ERROR: US08: FAMILY: CHILD " +temp+" Born before marriage of parents"+" Marriage date:"+WeddingDate+" Birthdate:"+Bdate);
+			            }
+			        	if(locBDate!=null && locDDate!=null)
+			        	{
+				        	if (locBDate.isAfter(locWDate))
+				        	{
+				        		System.out.println("ERROR: US08: FAMILY: CHILD " +temp+" Born 9 months after divorce of parents"+" Divorce date:"+DivorceDate+" Birthdate:"+Bdate);
+				        	}
+			        		
+			        	}
+			        
 			        }
-			        try{
-			        marriageDate = format.parse(WeddingDate);
-			        }catch (ParseException e){
-			        	e.printStackTrace();
-			        }
-			        if(birthdate!=null){
-			        if (marriageDate.compareTo(birthdate) == 1) {
-			        	System.out.println("ERROR: US08: FAMILY: CHILD " +temp+" Born before marriage of parents"+"Marriage dat:"+WeddingDate+" Birthdate:"+Bdate);
-			            
-			        } else {
-			        	//System.out.printf("\n Child "+temp+" check completed");
-			            
-			        }
-				}
-				  else
+			        else
 			        {
 			        	//System.out.printf("\n No children in family:"+fam.getId());
 			
 			        }
-				}
 			}
+		}
 			
-			
-		
-		
 	}
-		System.out.printf("FAMILY :US08: Birth before marriage of parents check completed");
+		System.out.printf("FAMILY :US08: Birth before marriage of parents check completed\n");
+
 	}
 	
 }
