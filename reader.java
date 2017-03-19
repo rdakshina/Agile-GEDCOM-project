@@ -4,6 +4,7 @@ package agile;
 
 //import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 //import java.util.Arrays;
 //import java.util.List;
 import java.util.ArrayList;
@@ -52,8 +53,9 @@ public class reader {
 
 	/**
 	 * create object for the class call parse method
+	 * @throws ParseException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 		List<Individual> individuals_list = new ArrayList<Individual>();
 		List<Family> families_list = new ArrayList<Family>();
 		String gedFile = "C:/studies/2agile/PoojithaShivaPrasad.ged.ged";
@@ -71,6 +73,9 @@ public class reader {
 		obj2.checkChildBirth(individuals_list, families_list);
 		MarriageBeforeDivorce obj3=new MarriageBeforeDivorce();
 		obj3.compare3(families_list);
+		BirthBeforeDeathofParents obj4=new BirthBeforeDeathofParents();
+		obj4.compare4(individuals_list, families_list);
+		
 	}
 
 }
