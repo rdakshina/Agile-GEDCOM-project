@@ -1,6 +1,7 @@
 package agile;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 //import java.time.LocalDate;
@@ -29,7 +30,9 @@ public class parser {
 	private String getId(String Id) {
 		return Id.replace("@", "");
 	}
-
+	
+	
+	
 	public void readFile(String file) throws IOException {
 
 		FileInputStream fileInput = null;
@@ -181,7 +184,83 @@ public class parser {
 			}
 		}
 	}
+	
+	//Method to list Deceased
+	public void listDeceased(){
+		System.out.println("US29: Deceased List");
+		for(Individual ind :individuals_list)
+		{
+			String ddate = ind.getDeathDate();
+			if(ddate != null)
+			{
+				System.out.println(">  "+ind.getId()+"   "+ind.getName());
+			}
+		}
+	}
 
+	//Method to check legitimate dates
+	public void legitimateDate()
+	{
+	//public static boolean isDateValid(String date) 
+	//{
+		DateFormat df = new SimpleDateFormat("dd MMM yyyy");
+		for(Individual ind: individuals_list)
+		{
+			if(ind.getBirthDate() != null)
+			{
+			try {
+	            
+	            df.setLenient(false);
+	            df.parse(ind.getBirthDate());
+	        } catch (ParseException e) {
+	            System.out.println("ERROR:INDIVIDUAL:US42:BirthDate:"+ind.getBirthDate()+" "+ind.getId()+" "+ind.getName());
+	        }
+			}
+			if(ind.getDeathDate() != null)
+			{
+				
+			try {
+	            df.setLenient(false);
+	            df.parse(ind.getDeathDate());
+	        } catch (ParseException e) {
+	        	System.out.println("ERROR:INDIVIDUAL:US42:DeathDate:"+ind.getDeathDate()+" "+ind.getId()+" "+ind.getName());
+	        }
+			}
+		}
+			for(Family fam:families_list)
+			{
+
+				if(fam.getWeddingDate() != null)
+				{
+				try {
+		            
+		            df.setLenient(false);
+		            df.parse(fam.getWeddingDate());
+		        } catch (ParseException e) {
+		        	System.out.println("ERROR:FAMILY:US42:WeddingDate:"+fam.getWeddingDate()+" "+fam.getId());
+		        }
+				}
+				if(fam.getDivorceDate() != null)
+				{
+				try {
+		            
+		            df.setLenient(false);
+		            df.parse(fam.getDivorceDate());
+		        } catch (ParseException e) {
+		        	System.out.println("ERROR:FAMILY:US42:DivorceDate:"+fam.getDivorceDate()+" "+fam.getId());
+		        }
+				}
+			}
+	       /* try {
+	            DateFormat df = new SimpleDateFormat("dd MMM yyyy");
+	            df.setLenient(false);
+	            df.parse();
+	            return true;
+	        } catch (ParseException e) {
+	            return false;
+	        }*/
+	//}
+	}
 	// Method to calculate age
 	public int calculateAge(String birthDate, String deathDate) {
 		LocalDate birDate = convertToLocalDate(birthDate);
