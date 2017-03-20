@@ -71,6 +71,8 @@ public class reader {
 		obj2.checkChildBirth(individuals_list, families_list);
 		MarriageBeforeDivorce obj3=new MarriageBeforeDivorce();
 		obj3.compare3(families_list);
+		BirthBeforeDeathofParents obj4=new BirthBeforeDeathofParents();
+		obj4.compare4(individuals_list, families_list);
 		p.validateMarriage();
 		p.validateUniqueNameBirthDate();
 		p.listDeceased();
