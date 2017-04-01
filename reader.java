@@ -77,6 +77,10 @@ public class reader {
 		p.validateUniqueNameBirthDate();
 		p.listDeceased();
 		p.legitimateDate();
+		SiblingSpacing obj5= new SiblingSpacing();
+		obj5.CheckBirths(individuals_list, families_list);
+		MultipleBirths obj6=new MultipleBirths();
+		obj6.CheckBirths(individuals_list, families_list);
 	}
 
 }
