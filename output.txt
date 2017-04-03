@@ -66,6 +66,19 @@ FAMILY: US39: Displayed upcoming anniversaries
 US29: Deceased List
 >  I4   Gilbert /Stewart/
 >  I13   Stephen /Michael/
+US30: Living Married List
+>  I2   Riya /John/
+>  I3   Elena /John/
+>  I5   Martha /Gilbert/
+>  I6   Christian /Gilbert/
+>  I7   Nina /Gilbert/
+>  I8   Rina /Christian/
+>  I9   Sassy /Gilbert/
+>  I14   Felix /Antony/
+>  I15   Caroline /Felix/
+>  I16   Daemon /Gilbert/
+US31: Living Single List
+>  I20   Sam /Gilbert/
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I6 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I7 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I17 occurs in the future.
