@@ -192,7 +192,28 @@ public class parser {
 			}
 		}
 	}
-
+	//Method to list Married
+	public void listLivingMarried()
+	{
+		System.out.println("US30: Living Married List");
+		for(Individual ind:individuals_list){
+			if(ind.getAliveStatus()==true && ind.getSpouse() != null)
+			{
+				System.out.println(">  " + ind.getId() + "   " + ind.getName());
+			}
+		}
+	}
+	//Method to list Single
+	public void listLivingSingle()
+	{
+		System.out.println("US31: Living Single List");
+		for(Individual ind:individuals_list){
+			if(ind.getAliveStatus()==true && ind.getSpouse() == null && ind.getAge() > 30)
+			{
+				System.out.println(">  " + ind.getId() + "   " + ind.getName());
+			}
+		}
+	}
 	// Method to check legitimate dates
 	public void legitimateDate() {
 		// public static boolean isDateValid(String date)
