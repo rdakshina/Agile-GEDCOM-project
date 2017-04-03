@@ -42,6 +42,10 @@ public class reader {
 		obj5.CheckBirths(individuals_list, families_list);
 		MultipleBirths obj6=new MultipleBirths();
 		obj6.CheckBirths(individuals_list, families_list);
+		ParentsNotTooOld obj7=new ParentsNotTooOld();
+		obj7.compare5(individuals_list, families_list);
+		Fewerthan15Siblings obj8=new Fewerthan15Siblings();
+		obj8.compare6(families_list);
 	}
 
 }
