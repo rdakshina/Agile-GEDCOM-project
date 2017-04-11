@@ -46,6 +46,10 @@ public class reader {
 		obj7.compare5(individuals_list, families_list);
 		Fewerthan15Siblings obj8=new Fewerthan15Siblings();
 		obj8.compare6(families_list);
+		MarriageToDescendants obj9= new MarriageToDescendants();
+		obj9.checkDescendants(p);
+		ListOrphans obj10= new ListOrphans();
+		obj10.FindOrphans(p);
 	}
 
 }
