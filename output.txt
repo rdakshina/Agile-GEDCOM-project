@@ -1,4 +1,5 @@
  
+ 
 ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I4 Birth date=10 APR 1927 Death date=2 APR 1920 
 ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I7 Birth date=9 JUN 2022 Death date=2 APR 2017 
 ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I13 Birth date=4 JUN 1970 Death date=10 AUG 1800
@@ -6,7 +7,7 @@ Individuals
 ------------------------------------------------------------------------------------------------------------------------
 |ID         |Name                  |Gender     |Age        |Birthday   |Alive      |Death      |Child      |Spouse     |
 ------------------------------------------------------------------------------------------------------------------------
-|I1         |Riya /John/           |F          |0          |9 APR 2017 |true       |null       |@F1@       |null       |
+|I1         |Riya /John/           |F          |0          |18 APR 2017|true       |null       |@F1@       |null       |
 |I2         |Riya /John/           |M          |24         |9 APR 1993 |true       |null       |@F2@       |@F1@       |
 |I3         |Elena /John/          |F          |52         |6 APR 1965 |true       |null       |@F3@       |@F1@       |
 |I4         |Gilbert /Stewart/     |M          |-7         |10 APR 1927|false      |2 APR 1920 |null       |@F2@       |
@@ -26,8 +27,8 @@ Individuals
 |I18        |Hancock /John/        |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
 |I19        |Narnia /John/         |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
 |I20        |Sam /Gilbert/         |M          |52         |10 JAN 1965|true       |null       |@F3@       |null       |
-|I21        |Samantha /Gilbert/    |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
-|I22        |Alex /Gilbert/        |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
+|I21        |Samantha /Gilbert/    |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |@F8@       |
+|I22        |Alex /Gilbert/        |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |@F8@       |
 |I23        |Luke /Gilbert/        |M          |45         |1 JAN 1972 |true       |null       |@F2@       |null       |
 |I24        |Lilly /Gilbert/       |F          |44         |13 JAN 1973|true       |null       |@F2@       |null       |
 |I25        |Phil /Gilbert/        |M          |42         |17 FEB 1975|true       |null       |@F2@       |null       |
@@ -50,6 +51,7 @@ Families
 |F5         |17 OCT 1990|null       |I6         |Christian /Gilbert/   |I8         |Rina /Christian/      | I10 I11 I8           |
 |F6         |14 NOV 2009|null       |I16        |Daemon /Gilbert/      |I7         |Nina /Gilbert/        |                      |
 |F7         |5 APR 2005 |11 OCT 2007|I13        |Stephen /Michael/     |I7         |Nina /Gilbert/        | I10 I11              |
+|F8         |13 JUL 2023|null       |I22        |Alex /Gilbert/        |I21        |Samantha /Gilbert/    |                      |
 ----------------------------------------------------------------------------------------------------------------------------------
 US22: UniqueID Check Completed
 INDIVIDUAL: US38: Displayed Upcoming Birthdays
@@ -58,6 +60,7 @@ INDIVIDUAL: US38: Displayed Upcoming Birthdays
 --------------------------------------------
 |ID      |Name                |Birthday    |
 --------------------------------------------
+|I1      |Riya /John/         |18 APR 2017 |
 |I8      |Rina /Christian/    |6 MAY 1965  |
 |I11     |Goldy /Christian/   |16 APR 2017 |
 --------------------------------------------
@@ -75,7 +78,6 @@ INDIVIDUAL: US35: Displayed Recent Births
 --------------------------------------------
 |ID      |Name                |Birthday    |
 --------------------------------------------
-|I1      |Riya /John/         |9 APR 2017  |
 |I10     |Mike /Christian/    |12 APR 2017 |
 |I11     |Goldy /Christian/   |16 APR 2017 |
 --------------------------------------------
@@ -91,6 +93,29 @@ US29: Deceased List
 >  I4   Gilbert /Stewart/
 >  I7   Nina /Gilbert/
 >  I13   Stephen /Michael/
+US30: Living Married List
+>  I2   Riya /John/
+>  I3   Elena /John/
+>  I5   Martha /Gilbert/
+>  I6   Christian /Gilbert/
+>  I8   Rina /Christian/
+>  I9   Sassy /Gilbert/
+>  I14   Felix /Antony/
+>  I15   Caroline /Felix/
+>  I16   Daemon /Gilbert/
+>  I21   Samantha /Gilbert/
+>  I22   Alex /Gilbert/
+US31: Living Single List
+>  I20   Sam /Gilbert/
+>  I23   Luke /Gilbert/
+>  I24   Lilly /Gilbert/
+>  I25   Phil /Gilbert/
+>  I26   Cameran /Gilbert/
+>  I27   Jay /Gilbert/
+>  I28   Gloria /Gilbert/
+>  I29   Claire /Gilbert/
+>  I21   Mitchell /Gilbert/
+ERROR: INDIVIDUAL: US01: Birthday 18 APR 2017 for the individual I1 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I6 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I7 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 16 APR 2017 for the individual I11 occurs in the future.
@@ -101,8 +126,10 @@ ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I21 occurs in th
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I22 occurs in the future.
 INDIVIDUAL: US01: Validated all dates before current date
 ERROR: FAMILY: US01: Wedding Date 13 JUL 2021 for the family F1 [Husband: I2 Wife: I3] occurs in the future.
+ERROR: FAMILY: US01: Wedding Date 13 JUL 2023 for the family F8 [Husband: I22 Wife: I21] occurs in the future.
 FAMILY: US01: Validated all dates before current date
 ERROR: US21: HusbId:I13   Sex:F   InValid
+ERROR: US21: WifeId:I21   Sex:M   InValid
 
 ERROR: INDIVIDUAL: US02: Birth date is after the marraige date for INDIVIDUAL I6 Birth date=9 JUN 2022 Marriage date= 32 DEC 2000
 
@@ -118,7 +145,7 @@ ERROR: INDIVIDUAL: US06: Divorce date is after the Death date for INDIVIDUAL I7D
 INDIVIDUAL: US06: Divorce date before Death date check completed 
 ERROR : INDIVIDUAL : US07 :Felix /Antony/ is older than 150 years
 INDIVIDUAL : US07 : Age check of all individuals completed
-ERROR: US08: FAMILY: CHILD I1 Born before marriage of parents Marriage date:13 JUL 2021 Birthdate:9 APR 2017
+ERROR: US08: FAMILY: CHILD I1 Born before marriage of parents Marriage date:13 JUL 2021 Birthdate:18 APR 2017
 ERROR: US08: FAMILY: CHILD I3 Born 9 months after divorce of parents Divorce date:11 OCT 1957 Birthdate:6 APR 1965
 ERROR: US08: FAMILY: CHILD I20 Born 9 months after divorce of parents Divorce date:11 OCT 1957 Birthdate:10 JAN 1965
 ERROR: US08: FAMILY: CHILD I8 Born before marriage of parents Marriage date:17 OCT 1990 Birthdate:6 MAY 1965
@@ -149,6 +176,7 @@ ERROR: FAMILY: US10: Marriage before 14 - Family: F4 Husband: I6 age is less tha
 ERROR: FAMILY: US10: Marriage before 14 - Family: F5 Husband: I6 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F6 Wife: I7 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F7 Husband: I13 age is less than 14
+ERROR: FAMILY: US10: Marriage before 14 - Family: F8 Husband: I22 age is less than 14
 INDIVIDUAL: US23: Validated all unique name and birthdate
 ERROR:INDIVIDUAL:US42:BirthDate:00 NOV 1972 I16 Daemon /Gilbert/
 ERROR:FAMILY:US42:WeddingDate:32 DEC 2000 F4
@@ -159,3 +187,26 @@ ERROR: US13: FAMILY: CHILDREN I20 and I3 Sibling Spacing is incorrect BirthDate1
 FAMILY :US13:Sibling Spacing check completed
 ERROR:US14:FAMILY: Multiple births on Date:9 JUN 2022 in family: F2
 FAMILY :US14:Multiple births check completed
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I2 of age 24
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I6 of age -5
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I7 of age -5
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I17 of age -5
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I18 of age -5
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I19 of age -5
+ERROR: FAMILY: US12: Mother I5 of age 89 is too old for child I22 of age -5
+ERROR: FAMILY: US12:  Father I14 of age 191 is too old for child I3 of age 52
+ERROR: FAMILY: US12:  Father I14 of age 191 is too old for child I20 of age 52
+ERROR: FAMILY: US15: Number of siblings in family F2 is 16 which is more than or equal to 15
+ERROR: FAMILY: US17 : Husband I6 is married to descendant I8 in family F5
+FAMILY :US17: Marraige to descendants check completed
+US33: FAMILY: Child I10 in family F7 is an orphan
+US33: FAMILY: Child I11 in family F7 is an orphan
+FAMILY :US33: Listing Orphans completed
+ERROR:FAMILY: US18 :I21 is married to sibling I22 in family F8
+FAMILY :US18: marriage between siblings check completed check completed
+ERROR: FAMILY: US34: Age of husband I14 is more than the age of the wife I15 in family F3
+ERROR: FAMILY: US34: Age of wife I9 is more than the age of the husband I6 in family F4
+ERROR: FAMILY: US34: Age of wife I8 is more than the age of the husband I6 in family F5
+ERROR: FAMILY: US34: Age of husband I16 is more than the age of the wife I7 in family F6
+ERROR: FAMILY: US34: Age of husband I13 is more than the age of the wife I7 in family F7
+ERROR: FAMILY: US34: Age of wife I21 is more than the age of the husband I22 in family F8
