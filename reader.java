@@ -15,6 +15,9 @@ public class reader {
 		BirthdaysAnniversaries ba = new BirthdaysAnniversaries();
 		ba.upcomingBirthdays(p);
 		ba.upcomingAnniversaries(p);
+		RecentBirthsDeaths bd = new RecentBirthsDeaths();
+		bd.recentBirth(p);
+		bd.recentDeath(p);
 		p.listDeceased();
 		p.listLivingMarried();
 		p.listLivingSingle();
