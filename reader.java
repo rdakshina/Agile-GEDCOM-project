@@ -55,6 +55,8 @@ public class reader {
 		obj10.FindOrphans(p);
 		SiblingsShouldNotMarry obj11=new SiblingsShouldNotMarry();
 		obj11.compare7(p);
+		LargeAgeDifference obj12=new LargeAgeDifference();
+		obj12.compare8(individuals_list, families_list);
 	}
 
 }
