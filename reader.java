@@ -53,6 +53,8 @@ public class reader {
 		obj9.checkDescendants(p);
 		ListOrphans obj10= new ListOrphans();
 		obj10.FindOrphans(p);
+		SiblingsShouldNotMarry obj11=new SiblingsShouldNotMarry();
+		obj11.compare7(p);
 	}
 
 }
