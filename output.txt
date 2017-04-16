@@ -1,21 +1,22 @@
  
 ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I4 Birth date=10 APR 1927 Death date=2 APR 1920 
+ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I7 Birth date=9 JUN 2022 Death date=2 APR 2017 
 ERROR: INDIVIDUAL: US03: Birth date is after the death date for INDIVIDUAL I13 Birth date=4 JUN 1970 Death date=10 AUG 1800
 Individuals
 ------------------------------------------------------------------------------------------------------------------------
 |ID         |Name                  |Gender     |Age        |Birthday   |Alive      |Death      |Child      |Spouse     |
 ------------------------------------------------------------------------------------------------------------------------
-|I1         |Riya /John/           |F          |23         |9 APR 1993 |true       |null       |@F1@       |null       |
-|I2         |Riya /John/           |M          |23         |9 APR 1993 |true       |null       |@F2@       |@F1@       |
-|I3         |Elena /John/          |F          |51         |6 APR 1965 |true       |null       |@F3@       |@F1@       |
+|I1         |Riya /John/           |F          |0          |9 APR 2017 |true       |null       |@F1@       |null       |
+|I2         |Riya /John/           |M          |24         |9 APR 1993 |true       |null       |@F2@       |@F1@       |
+|I3         |Elena /John/          |F          |52         |6 APR 1965 |true       |null       |@F3@       |@F1@       |
 |I4         |Gilbert /Stewart/     |M          |-7         |10 APR 1927|false      |2 APR 1920 |null       |@F2@       |
-|I5         |Martha /Gilbert/      |F          |88         |10 APR 1928|true       |null       |null       |@F2@       |
+|I5         |Martha /Gilbert/      |F          |89         |10 APR 1928|true       |null       |null       |@F2@       |
 |I6         |Christian /Gilbert/   |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |@F5@       |
-|I7         |Nina /Gilbert/        |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |@F7@       |
-|I8         |Rina /Christian/      |F          |51         |6 MAY 1965 |true       |null       |null       |@F5@       |
+|I7         |Nina /Gilbert/        |F          |-5         |9 JUN 2022 |false      |2 APR 2017 |@F2@       |@F7@       |
+|I8         |Rina /Christian/      |F          |51         |6 MAY 1965 |true       |null       |@F5@       |@F5@       |
 |I9         |Sassy /Gilbert/       |F          |48         |14 SEP 1968|true       |null       |null       |@F4@       |
-|I10        |Mike /Christian/      |M          |25         |12 APR 1991|true       |null       |@F5@       |null       |
-|I11        |Goldy /Christian/     |F          |25         |16 APR 1991|true       |null       |@F5@       |null       |
+|I10        |Mike /Christian/      |M          |0          |12 APR 2017|true       |null       |@F5@       |null       |
+|I11        |Goldy /Christian/     |F          |0          |16 APR 2017|true       |null       |@F5@       |null       |
 |I10        |Olivia /Gilbert/      |F          |14         |4 SEP 2002 |true       |null       |@F4@       |null       |
 |I13        |Stephen /Michael/     |F          |-169       |4 JUN 1970 |false      |10 AUG 1800|null       |@F7@       |
 |I14        |Felix /Antony/        |M          |191        |3 DEC 1825 |true       |null       |null       |@F3@       |
@@ -25,65 +26,79 @@ Individuals
 |I18        |Hancock /John/        |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
 |I19        |Narnia /John/         |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
 |I20        |Sam /Gilbert/         |M          |52         |10 JAN 1965|true       |null       |@F3@       |null       |
+|I21        |Samantha /Gilbert/    |F          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
+|I22        |Alex /Gilbert/        |M          |-5         |9 JUN 2022 |true       |null       |@F2@       |null       |
+|I23        |Luke /Gilbert/        |M          |45         |1 JAN 1972 |true       |null       |@F2@       |null       |
+|I24        |Lilly /Gilbert/       |F          |44         |13 JAN 1973|true       |null       |@F2@       |null       |
+|I25        |Phil /Gilbert/        |M          |42         |17 FEB 1975|true       |null       |@F2@       |null       |
+|I26        |Cameran /Gilbert/     |M          |39         |10 JUN 1977|true       |null       |@F2@       |null       |
+|I27        |Jay /Gilbert/         |M          |39         |19 JAN 1978|true       |null       |@F2@       |null       |
+|I28        |Gloria /Gilbert/      |F          |38         |10 JAN 1979|true       |null       |@F2@       |null       |
+|I29        |Claire /Gilbert/      |F          |37         |22 JAN 1980|true       |null       |@F2@       |null       |
+|I21        |Mitchell /Gilbert/    |M          |36         |28 JAN 1981|true       |null       |@F2@       |null       |
 ------------------------------------------------------------------------------------------------------------------------
 INDIVIDUAL: US27: Displayed Individuals Age
-ERROR: US22: DuplicateID[I10]
+ERROR: US22: DuplicateID[I10, I21]
 Families
 ----------------------------------------------------------------------------------------------------------------------------------
 |ID         |Married    |Divorced   |Husband ID |Husband Name          |Wife ID    |Wife Name             |Children              |
 ----------------------------------------------------------------------------------------------------------------------------------
 |F1         |13 JUL 2021|null       |I2         |Riya /John/           |I3         |Elena /John/          | I1                   |
-|F2         |7 OCT 1958 |null       |I4         |Gilbert /Stewart/     |I5         |Martha /Gilbert/      | I2 I6 I7 I17 I18 I19 |
+|F2         |7 OCT 1958 |null       |I4         |Gilbert /Stewart/     |I5         |Martha /Gilbert/      | I2 I6 I7 I17 I18 I19 I21 I22 I23 I24 I25 I26 I27 I28 I29 I30|
 |F3         |3 AUG 1959 |11 OCT 1957|I14        |Felix /Antony/        |I15        |Caroline /Felix/      | I3 I20               |
 |F4         |32 DEC 2000|null       |I6         |Christian /Gilbert/   |I9         |Sassy /Gilbert/       | I12                  |
-|F5         |17 OCT 1990|null       |I6         |Christian /Gilbert/   |I8         |Rina /Christian/      | I10 I11              |
+|F5         |17 OCT 1990|null       |I6         |Christian /Gilbert/   |I8         |Rina /Christian/      | I10 I11 I8           |
 |F6         |14 NOV 2009|null       |I16        |Daemon /Gilbert/      |I7         |Nina /Gilbert/        |                      |
 |F7         |5 APR 2005 |11 OCT 2007|I13        |Stephen /Michael/     |I7         |Nina /Gilbert/        | I10 I11              |
 ----------------------------------------------------------------------------------------------------------------------------------
 US22: UniqueID Check Completed
-INDIVIDUAL: US38: Displayed upcoming birthdays
+INDIVIDUAL: US38: Displayed Upcoming Birthdays
 --------------------------------------------
           Upcoming Birthdays List           
 --------------------------------------------
 |ID      |Name                |Birthday    |
 --------------------------------------------
-|I1      |Riya /John/         |9 APR 1993  |
-|I2      |Riya /John/         |9 APR 1993  |
-|I3      |Elena /John/        |6 APR 1965  |
-|I4      |Gilbert /Stewart/   |10 APR 1927 |
-|I5      |Martha /Gilbert/    |10 APR 1928 |
-|I10     |Mike /Christian/    |12 APR 1991 |
-|I11     |Goldy /Christian/   |16 APR 1991 |
+|I8      |Rina /Christian/    |6 MAY 1965  |
+|I11     |Goldy /Christian/   |16 APR 2017 |
 --------------------------------------------
-FAMILY: US39: Displayed upcoming anniversaries
+FAMILY: US39: Displayed Upcoming Anniversaries
 ------------------------------------------------------------------
                    Upcoming Anniversaries List                    
 ------------------------------------------------------------------
 |Family ID|Husband             |Wife                |Wedding Date|
 ------------------------------------------------------------------
-|F7       |Stephen /Michael/   |Nina /Gilbert/      |5 APR 2005  |
+No upcoming anniversaries 
 ------------------------------------------------------------------
+INDIVIDUAL: US35: Displayed Recent Births
+--------------------------------------------
+               Recent Births                
+--------------------------------------------
+|ID      |Name                |Birthday    |
+--------------------------------------------
+|I1      |Riya /John/         |9 APR 2017  |
+|I10     |Mike /Christian/    |12 APR 2017 |
+|I11     |Goldy /Christian/   |16 APR 2017 |
+--------------------------------------------
+INDIVIDUAL: US36: Displayed Recent Deaths
+--------------------------------------------
+               Recent Deaths                
+--------------------------------------------
+|ID      |Name                |Death Date  |
+--------------------------------------------
+|I7      |Nina /Gilbert/      |2 APR 2017  |
+--------------------------------------------
 US29: Deceased List
 >  I4   Gilbert /Stewart/
->  I13   Stephen /Michael/
-US30: Living Married List
->  I2   Riya /John/
->  I3   Elena /John/
->  I5   Martha /Gilbert/
->  I6   Christian /Gilbert/
 >  I7   Nina /Gilbert/
->  I8   Rina /Christian/
->  I9   Sassy /Gilbert/
->  I14   Felix /Antony/
->  I15   Caroline /Felix/
->  I16   Daemon /Gilbert/
-US31: Living Single List
->  I20   Sam /Gilbert/
+>  I13   Stephen /Michael/
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I6 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I7 occurs in the future.
+ERROR: INDIVIDUAL: US01: Birthday 16 APR 2017 for the individual I11 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I17 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I18 occurs in the future.
 ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I19 occurs in the future.
+ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I21 occurs in the future.
+ERROR: INDIVIDUAL: US01: Birthday 9 JUN 2022 for the individual I22 occurs in the future.
 INDIVIDUAL: US01: Validated all dates before current date
 ERROR: FAMILY: US01: Wedding Date 13 JUL 2021 for the family F1 [Husband: I2 Wife: I3] occurs in the future.
 FAMILY: US01: Validated all dates before current date
@@ -99,14 +114,16 @@ ERROR: INDIVIDUAL:US05: Marriage date should be before the Death date for INDIVI
 ERROR: INDIVIDUAL:US05: Marriage date should be before the Death date for INDIVIDUAL I13 Marriage date=5 APR 2005 Death date=10 AUG 1800
 INDIVIDUAL: US05: Marriage date before Death date check completed 
 *US06* Divorce date before Death date checked for I14ERROR: INDIVIDUAL: US06: Divorce date is after the Death date for INDIVIDUAL I13 Divorce date=11 OCT 2007 Death date=10 AUG 1800
+ERROR: INDIVIDUAL: US06: Divorce date is after the Death date for INDIVIDUAL I7Divorce date=11 OCT 2007 Death date=2 APR 2017
 INDIVIDUAL: US06: Divorce date before Death date check completed 
 ERROR : INDIVIDUAL : US07 :Felix /Antony/ is older than 150 years
 INDIVIDUAL : US07 : Age check of all individuals completed
-ERROR: US08: FAMILY: CHILD I1 Born before marriage of parents Marriage date:13 JUL 2021 Birthdate:9 APR 1993
+ERROR: US08: FAMILY: CHILD I1 Born before marriage of parents Marriage date:13 JUL 2021 Birthdate:9 APR 2017
 ERROR: US08: FAMILY: CHILD I3 Born 9 months after divorce of parents Divorce date:11 OCT 1957 Birthdate:6 APR 1965
 ERROR: US08: FAMILY: CHILD I20 Born 9 months after divorce of parents Divorce date:11 OCT 1957 Birthdate:10 JAN 1965
+ERROR: US08: FAMILY: CHILD I8 Born before marriage of parents Marriage date:17 OCT 1990 Birthdate:6 MAY 1965
 ERROR: US08: FAMILY: CHILD I10 Born before marriage of parents Marriage date:5 APR 2005 Birthdate:4 SEP 2002
-ERROR: US08: FAMILY: CHILD I11 Born before marriage of parents Marriage date:5 APR 2005 Birthdate:16 APR 1991
+ERROR: US08: FAMILY: CHILD I11 Born 9 months after divorce of parents Divorce date:11 OCT 2007 Birthdate:16 APR 2017
 FAMILY :US08: Birth before marriage of parents check completed
 ERROR: FAMILY: US04: Marriage date: 3 AUG 1959 in family F3 occurs after divorce date:11 OCT 1957
 ERROR: FAMILY: US09:  CHILD I2 Born: 1993-04-09 after 9 months after father I4 death:1920-04-02
@@ -115,18 +132,30 @@ ERROR: FAMILY: US09:  CHILD I7 Born: 2022-06-09 after 9 months after father I4 d
 ERROR: FAMILY: US09:  CHILD I17 Born: 2022-06-09 after 9 months after father I4 death:1920-04-02
 ERROR: FAMILY: US09:  CHILD I18 Born: 2022-06-09 after 9 months after father I4 death:1920-04-02
 ERROR: FAMILY: US09:  CHILD I19 Born: 2022-06-09 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I21 Born: 1981-01-28 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I22 Born: 2022-06-09 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I23 Born: 1972-01-01 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I24 Born: 1973-01-13 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I25 Born: 1975-02-17 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I26 Born: 1977-06-10 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I27 Born: 1978-01-19 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I28 Born: 1979-01-10 after 9 months after father I4 death:1920-04-02
+ERROR: FAMILY: US09:  CHILD I29 Born: 1980-01-22 after 9 months after father I4 death:1920-04-02
 ERROR: FAMILY: US09:  CHILD I10 Born: 2002-09-04 after 9 months after father I13 death:1800-08-10
-ERROR: FAMILY: US09:  CHILD I11 Born: 1991-04-16 after 9 months after father I13 death:1800-08-10
+ERROR: FAMILY: US09:  CHILD I11 Born: 2017-04-16 after 9 months after father I13 death:1800-08-10
+ERROR: FAMILY: US09: CHILD I11 Born: 2017-04-16 after mother I7 death:2017-04-02
 ERROR: FAMILY: US10: Marriage before 14 - Family: F2 Husband: I4 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F4 Husband: I6 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F5 Husband: I6 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F6 Wife: I7 age is less than 14
 ERROR: FAMILY: US10: Marriage before 14 - Family: F7 Husband: I13 age is less than 14
-ERROR: INDIVIDUAL: US23: Duplicate name and birthdate found [Riya John 1993-04-09]
 INDIVIDUAL: US23: Validated all unique name and birthdate
 ERROR:INDIVIDUAL:US42:BirthDate:00 NOV 1972 I16 Daemon /Gilbert/
 ERROR:FAMILY:US42:WeddingDate:32 DEC 2000 F4
+ERROR: US13: FAMILY: CHILDREN I26 and I27 Sibling Spacing is incorrect BirthDate1:10 JUN 1977 Birthdate2:19 JAN 1978 Days in between:9
+ERROR: US13: FAMILY: CHILDREN I27 and I26 Sibling Spacing is incorrect BirthDate1:19 JAN 1978 Birthdate2:10 JUN 1977 Days in between:9
 ERROR: US13: FAMILY: CHILDREN I3 and I20 Sibling Spacing is incorrect BirthDate1:6 APR 1965 Birthdate2:10 JAN 1965 Days in between:27
 ERROR: US13: FAMILY: CHILDREN I20 and I3 Sibling Spacing is incorrect BirthDate1:10 JAN 1965 Birthdate2:6 APR 1965 Days in between:27
 FAMILY :US13:Sibling Spacing check completed
+ERROR:US14:FAMILY: Multiple births on Date:9 JUN 2022 in family: F2
 FAMILY :US14:Multiple births check completed
