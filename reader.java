@@ -15,9 +15,10 @@ public class reader {
 		BirthdaysAnniversaries ba = new BirthdaysAnniversaries();
 		ba.upcomingBirthdays(p);
 		ba.upcomingAnniversaries(p);
+		RecentBirthsDeaths bd = new RecentBirthsDeaths();
+		bd.recentBirth(p);
+		bd.recentDeath(p);
 		p.listDeceased();
-		p.listLivingMarried();
-		p.listLivingSingle();
 		ValidateDateBeforeCurrentDate db = new ValidateDateBeforeCurrentDate();
 		db.validateDatesBeforeCurrentIndv(p);
 		db.validateDatesBeforeCurrentFam(p);
@@ -42,14 +43,6 @@ public class reader {
 		obj5.CheckBirths(individuals_list, families_list);
 		MultipleBirths obj6=new MultipleBirths();
 		obj6.CheckBirths(individuals_list, families_list);
-		ParentsNotTooOld obj7=new ParentsNotTooOld();
-		obj7.compare5(individuals_list, families_list);
-		Fewerthan15Siblings obj8=new Fewerthan15Siblings();
-		obj8.compare6(families_list);
-		MarriageToDescendants obj9= new MarriageToDescendants();
-		obj9.checkDescendants(p);
-		ListOrphans obj10= new ListOrphans();
-		obj10.FindOrphans(p);
 	}
 
 }
