@@ -57,6 +57,10 @@ public class reader {
 		obj11.compare7(p);
 		LargeAgeDifference obj12=new LargeAgeDifference();
 		obj12.compare8(individuals_list, families_list);
+		MultipleBirthList bl = new MultipleBirthList();
+		bl.CheckBirths(p);
+		OrderSiblingsByAge sa = new OrderSiblingsByAge();
+		sa.orderByAge(p);
 	}
 
 }
